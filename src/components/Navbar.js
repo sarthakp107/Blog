@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '@fontsource/poppins';
 
 export default function Navbar() {
   return (
     <nav className="flex justify-between items-center py-4 px-8 bg-gray-100 ">
       {/* Logo Section */}
       <div>
-        <Link to="/" className="text-2xl font-bold text-gray-800 hover:text-gray-600">
-          BLOG
+        <Link to="/" className="text-2xl font-bold text-gray-800 hover:text-gray-600" style={{ fontFamily: 'Poppins, sans-serif' }}        >
+          Dev Diaries
         </Link>
       </div>
 
