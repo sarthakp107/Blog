@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuthContext } from './useAuthContext'
 import { projectAuth, projectFirestore } from '../firebase/config'
 
@@ -8,7 +8,7 @@ export const useLogout = () => {
     const [error, setError] = useState(null)
     const [isPending, setIsPending] = useState(false)
 
-    const { dispath, user } = useAuthContext();
+    const { dispatch, user } = useAuthContext();
 
     const logout = async () => {
         setError(null);
@@ -24,7 +24,7 @@ export const useLogout = () => {
             //sign the use out
             await projectAuth.signOut();
 
-            dispath({ type: 'LOGOUT' })
+            dispatch({ type: 'LOGOUT' })
 
             setIsPending(false);
             setError(null);
