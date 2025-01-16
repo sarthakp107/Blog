@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '@fontsource/poppins';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 export default function Navbar() {
+  const { user } = useAuthContext();
   return (
     <nav className="flex justify-between items-center py-4 px-8 bg-gray-100 fixed top-0 left-0 right-0 z-10 ">
       {/* Logo Section */}
@@ -36,16 +38,23 @@ export default function Navbar() {
       {/* Action Buttons */}
       <div>
         <ul className="flex items-center gap-6">
-          <li>
+         {!user && <li>
             <Link to="/signup" className="text-gray-700 hover:text-gray-900">
               Signup
             </Link>
           </li>
-          <li>
+          }
+         { !user && <li>
             <Link to="/login" className="text-gray-700 hover:text-gray-900">
               Login
             </Link>
-          </li>
+          </li>}
+
+          {user && <li>
+            <Link to="/" className="text-gray-700 hover:text-gray-900">
+              Logout
+            </Link>
+          </li>}
           <li>
             <Link
               to="/subscribe"

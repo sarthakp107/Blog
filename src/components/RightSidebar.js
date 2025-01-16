@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export default function RightSidebar() {
     return (
-        <div className="fixed top-60 right-14 w-72 bg-white p-6  rounded-lg ">
+        <div className="fixed top-60 right-14 w-72 p-6  rounded-lg ">
             {/* Bio Card Content */}
             <div className="text-center">
                 <h2 className="text-2xl font-bold text-gray-800">Sarthak Pradhan</h2>

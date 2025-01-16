@@ -23,7 +23,7 @@ function App() {
     {authIsReady && <BrowserRouter>
     <Navbar />
    {/* {user && <RightSidebar/>} */}
-<Groups/>
+{user && <Groups/>}
    <RightSidebar/>
     <Routes>
       <Route path='/' element={<Home/>}/>

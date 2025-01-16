@@ -17,7 +17,7 @@ export default function Groups() {
 
   return (
     <div className="fixed top-16 left-3 h-[calc(100%-4rem)] w-64 p-4 rounded-lg shadow-lg z-20">
-      <h2 className="text-black text-2xl mb-6 text-center" style={{ fontFamily: 'Poppins, sans-serif' }}>Available Groups</h2>
+      <h2 className="text-black text-xl mb-6 text-center" style={{ fontFamily: 'Poppins, sans-serif' }}>Available Groups</h2>
       <div className="space-y-4">
         {groups.map((group, index) => (
           <div
