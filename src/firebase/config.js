@@ -1,4 +1,4 @@
-import firebase from "firebase/compat/app";
+import firebase from "firebase";
 import "firebase/firestore";
 import "firebase/auth";
 
@@ -14,6 +14,7 @@ const firebaseConfig = {
 
   //initialize firebase
   firebase.initializeApp(firebaseConfig);
+
 
   //initialize firestore service
   const projectFirestore = firebase.firestore();
