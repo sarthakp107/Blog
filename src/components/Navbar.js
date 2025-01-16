@@ -55,14 +55,22 @@ export default function Navbar() {
               Logout
             </Link>
           </li>}
-          <li>
+          {!user && <li>
+            <Link
+              to="/login"
+              className="bg-blue-500 text-white rounded-full px-4 py-2 hover:bg-blue-600 transition"
+            >
+              Subscribe
+            </Link>
+          </li>}
+          {user && <li>
             <Link
               to="/subscribe"
               className="bg-blue-500 text-white rounded-full px-4 py-2 hover:bg-blue-600 transition"
             >
               Subscribe
             </Link>
-          </li>
+          </li>}
         </ul>
       </div>
     </nav>
