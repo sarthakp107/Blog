@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLogout } from '../hooks/useLogout';
 import Avatar from './Avatar';
 import { useAuthContext } from '../hooks/useAuthContext';
-import { FaUser, FaQuestionCircle, FaPhoneAlt, FaSignOutAlt, FaExchangeAlt } from 'react-icons/fa';
+import { FaUser, FaQuestionCircle, FaPhoneAlt, FaSignOutAlt, FaExchangeAlt, FaCog } from 'react-icons/fa';
 
 
 const ProfileToggle = () => {
@@ -96,6 +96,14 @@ const ProfileToggle = () => {
                                         className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
                                     >
                                         <FaPhoneAlt className="mr-2" /> Contact
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/settings"
+                                        className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md"
+                                    >
+                                        <FaCog className="mr-2" /> Settings
                                     </Link>
                                 </li>
                                 <li>

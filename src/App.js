@@ -14,17 +14,23 @@ import RightSidebar from './components/RightSidebar.js';
 import Groups from './components/Groups.js';
 import Group from './pages/groups/Group.js';
 import Settings from './pages/settings/Settings.js';
+import Footer from './components/Footer.js';
+import OnlineUsers from './components/OnlineUsers.js';
 
 function App() {
 
   const { user, authIsReady } = useAuthContext();
 
   return (
-    <div className="app">
+    <div className="app flex flex-col min-h-screen">
       {authIsReady && <BrowserRouter>
         <Navbar />
         {/* {user && <RightSidebar/>} */}
-        {user && <Groups />}
+        <div className='flex-grow'>
+
+       
+        {/* {user && <Groups />} */}
+        {user && <OnlineUsers />}
         <RightSidebar />
         <Routes>
           <Route path='/' element={<Home />} />
@@ -37,6 +43,8 @@ function App() {
           <Route path='/subscribe' element={<Subscribe />} />
           <Route path='/settings' element={<Settings />} />
         </Routes>
+        </div>
+      <Footer />
 
       </BrowserRouter>}
     </div>
