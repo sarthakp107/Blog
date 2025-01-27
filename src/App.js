@@ -16,7 +16,7 @@ import Group from './pages/groups/Group.js';
 import Settings from './pages/settings/Settings.js';
 import Footer from './components/Footer.js';
 import OnlineUsers from './components/OnlineUsers.js';
-
+import QnsSurvey from './pages/signup/QnsSurvey.js';
 function App() {
 
   const { user, authIsReady } = useAuthContext();
@@ -42,6 +42,7 @@ function App() {
           <Route path='/group' element={<Group />} />
           <Route path='/subscribe' element={<Subscribe />} />
           <Route path='/settings' element={<Settings />} />
+          <Route path='/qns' element={<QnsSurvey />} />
         </Routes>
         </div>
       <Footer />

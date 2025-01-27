@@ -7,7 +7,7 @@ export default function Home() {
       <header className="flex justify-center items-center h-[70vh] bg-blue-500 text-white">
         <div className="text-center">
           <h1 className="text-6xl font-bold mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-            Welcome to Dev Diaries!
+            Welcome to Swin Study!
           </h1>
           <p className="text-xl mb-8">Coming Soon...</p>
         </div>

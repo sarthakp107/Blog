@@ -21,7 +21,7 @@ export default function Navbar() {
       {/* Logo Section */}
       <div>
         <Link to="/" className="text-2xl font-bold text-gray-800 hover:text-gray-600" style={{ fontFamily: 'Poppins, sans-serif' }}        >
-          Dev Diaries
+          SwinStudy
         </Link>
       </div>
 
