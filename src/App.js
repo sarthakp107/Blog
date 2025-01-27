@@ -31,7 +31,7 @@ function App() {
        
         {/* {user && <Groups />} */}
         {user && <OnlineUsers />}
-        <RightSidebar />
+        {/* <RightSidebar /> */}
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/home' element={<Home />} />
