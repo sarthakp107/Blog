@@ -82,11 +82,14 @@ export default function Signup() {
           Sign Up
         </button> */}
 
-        <div className= 'flex justify-end p-6'>
+      {/* {email &&  (<div className= 'flex justify-end p-6'> */}
+      {(<div className= 'flex justify-end p-6'>
           <button onClick={qnsSurveyPage}>
             <FaArrowRight className='h-5 w-'/>
           </button>
-        </div>
+        </div>)}
+
+      
 
 
         {error && (
