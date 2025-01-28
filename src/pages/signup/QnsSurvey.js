@@ -1,6 +1,13 @@
 import React, { useState } from "react";
+import { projectFirestore } from "../../firebase/config";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 export default function QnsSurvey() {
+  //database
+   const { user } = useAuthContext();
+  
+
+
   const [currentPage, setCurrentPage] = useState(1);
   const [error, setError] = useState('');
 
@@ -90,9 +97,12 @@ export default function QnsSurvey() {
     setCurrentPage((prev) => prev + 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("Survey Responses:", responses);
+    //add to the database
+    const { uid } = user;
+    await projectFirestore.collection('users').doc(uid).update({surveryIsDone: true });
+    
   };
 
   const leftSideText = () => {
