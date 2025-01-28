@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { projectFirestore } from "../../firebase/config";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function QnsSurvey() {
   //database
    const { user } = useAuthContext();
   
-
+  const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [error, setError] = useState('');
@@ -76,7 +77,8 @@ export default function QnsSurvey() {
     alert(`Unit "${newUnit.name}" added successfully!`);
   };
 
-  const handleNext = () => {
+  const handleNext = (e) => {
+    e.preventDefault();
     setError('');
     if (currentPage === 1) {
       if (!responses.course.trim() || !validCourses.includes(responses.course)) {
@@ -101,7 +103,11 @@ export default function QnsSurvey() {
     e.preventDefault();
     //add to the database
     const { uid } = user;
-    await projectFirestore.collection('users').doc(uid).update({surveryIsDone: true });
+    await projectFirestore.collection('users').doc(uid).update({
+      surveryIsDone: true,
+      responses
+     });
+     navigate('/profile')
     
   };
 
@@ -140,7 +146,7 @@ export default function QnsSurvey() {
       <div className="w-1/2 p-8 flex items-center justify-center">
         <div className="bg-white rounded-lg shadow-xl p-8 w-full max-w-lg">
           <h2 className="text-4xl font-bold text-center text-blue-600 mb-6">Student Survey</h2>
-          <form onSubmit={handleSubmit}>
+          <form >
             {/* Page 1: Major and Year */}
             {currentPage === 1 && (
               <div>
@@ -246,6 +252,7 @@ export default function QnsSurvey() {
               ) : (
                 <button
                   type="submit"
+                  onClick={handleSubmit}
                   className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 text-xl"
                 >
                   Submit

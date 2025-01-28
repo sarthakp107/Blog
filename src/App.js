@@ -17,6 +17,8 @@ import Settings from './pages/settings/Settings.js';
 import Footer from './components/Footer.js';
 import OnlineUsers from './components/OnlineUsers.js';
 import QnsSurvey from './pages/signup/QnsSurvey.js';
+import Profile from './pages/Profile/Profile.js';
+
 function App() {
 
   const { user, authIsReady } = useAuthContext();
@@ -42,7 +44,15 @@ function App() {
           <Route path='/group' element={<Group />} />
           <Route path='/subscribe' element={<Subscribe />} />
           <Route path='/settings' element={<Settings />} />
-          <Route path='/qns' element={<QnsSurvey />} />
+          {/* <Route path='/qns' element={<QnsSurvey />} /> */}
+          <Route
+  path="/qns"
+  element={
+    user?.surveryIsDone === false ? <QnsSurvey /> : <Navigate to="/profile" />
+  }
+/>
+
+          <Route path='/profile' element={<Profile />} />
         </Routes>
         </div>
       <Footer />
