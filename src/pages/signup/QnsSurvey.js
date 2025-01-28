@@ -18,6 +18,22 @@ export default function QnsSurvey() {
     { id: "COS40003", name: "Cybersecurity Fundamentals" },
   ]);
 
+  const validCourses = [
+    "Bachelor of Computer Science",
+    "Bachelor of Information Technology",
+    "Bachelor of Software Engineering",
+    "Bachelor of Cybersecurity",
+    "Bachelor of Data Science",
+  ];
+
+  const validMajors = [
+    "Software Development",
+    "Cybersecurity",
+    "Artificial Intelligence",
+    "Data Analytics",
+    "Network Design",
+  ];
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setResponses((prev) => ({
@@ -56,12 +72,12 @@ export default function QnsSurvey() {
   const handleNext = () => {
     setError('');
     if (currentPage === 1) {
-      if (!responses.course.trim()) {
-        setError('Please enter your course');
+      if (!responses.course.trim() || !validCourses.includes(responses.course)) {
+        setError('Please enter a valid course');
         return;
       }
-      if (!responses.major.trim()) {
-        setError('Please enter your major');
+      if (!responses.major.trim() || !validMajors.includes(responses.major)) {
+        setError('Please enter a valid major');
         return;
       }
 
@@ -73,8 +89,6 @@ export default function QnsSurvey() {
 
     setCurrentPage((prev) => prev + 1);
   };
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -122,25 +136,31 @@ export default function QnsSurvey() {
               <div>
                 <div className="mb-6">
                   <label className="block text-2xl font-medium text-gray-700 mb-2">What course are you taking?</label>
-                  <input
-                    type="text"
+                  <select
                     name="course"
                     value={responses.course}
                     onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-md text-xl"
-                    placeholder="E.g., Computer Science"
-                  />
+                  >
+                    <option value="">Select your course</option>
+                    {validCourses.map((course) => (
+                      <option key={course} value={course}>{course}</option>
+                    ))}
+                  </select>
                 </div>
                 <div className="mb-6">
                   <label className="block text-2xl font-medium text-gray-700 mb-2">What is your major?</label>
-                  <input
-                    type="text"
+                  <select
                     name="major"
                     value={responses.major}
                     onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-md text-xl"
-                    placeholder="E.g., Software Development"
-                  />
+                  >
+                    <option value="">Select your major</option>
+                    {validMajors.map((major) => (
+                      <option key={major} value={major}>{major}</option>
+                    ))}
+                  </select>
                 </div>
                 <div className="mb-6">
                   <label className="block text-2xl font-medium text-gray-700 mb-2">Which year are you in?</label>
