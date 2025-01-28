@@ -11,18 +11,15 @@ export default function Signup() {
   const [displayName, setDisplayName] = useState('');
 
   const { signup, error, isPending } = useSignup();
-  const toQnsSurveyPage = useNavigate();
 
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     signup(email, password, displayName);
     console.log(email, password, displayName);
+    navigate('/qns')
   }
 
-  const qnsSurveyPage = (e) => {
-    e.preventDefault();
-    toQnsSurveyPage('/qns')
-  }
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -74,20 +71,21 @@ export default function Signup() {
           />
         </div>
 
-        {/* Submit Button */}
-        {/* <button
+
+        <button
           type="submit"
+          onClick={handleSubmit}
           className="w-full py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
         >
           Sign Up
-        </button> */}
+        </button>
 
       {/* {email &&  (<div className= 'flex justify-end p-6'> */}
-      {(<div className= 'flex justify-end p-6'>
+      {/* {(<div className= 'flex justify-end p-6'>
           <button onClick={qnsSurveyPage}>
             <FaArrowRight className='h-5 w-'/>
           </button>
-        </div>)}
+        </div>)} */}
 
       
 

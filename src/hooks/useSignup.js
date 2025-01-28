@@ -20,11 +20,6 @@ export const useSignup = () => {
         throw new Error('Could not complete signup')
       }
 
-      // // upload user thumbnail
-      // const uploadPath = `thumbnails/${res.user.uid}/${thumbnail.name}`
-      // const img = await projectStorage.ref(uploadPath).put(thumbnail)
-      // const imgUrl = await img.ref.getDownloadURL()
-
       console.log(res);
       await res.user.updateProfile({ displayName })
       setIsPending(false)
@@ -32,7 +27,8 @@ export const useSignup = () => {
       //create a user document
       await projectFirestore.collection('users').doc(res.user.uid).set({
         online: true,
-        displayName
+        displayName,
+        surveryIsDone: false
       });
 
       // dispatch login action

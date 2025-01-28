@@ -26,43 +26,47 @@ export default function QnsSurvey() {
   const handleCheckboxChange = (unitId) => {
     setResponses((prev) => {
       const isSelected = prev.units.includes(unitId);
-      const updatedUnits = isSelected
-        ? prev.units.filter((id) => id !== unitId)
-        : [...prev.units, unitId];
       return {
         ...prev,
-        units: updatedUnits,
+        units: isSelected
+          ? prev.units.filter((id) => id !== unitId)
+          : [...prev.units, unitId],
       };
     });
   };
 
-  const handleCustomUnitChange = (e) => {
-    setCustomUnit(e.target.value);
-  };
-
   const addCustomUnit = () => {
-    if (customUnit.trim() !== "") {
-      const newUnit = {
-        id: `CUSTOM-${unitsList.length + 1}`,
-        name: customUnit.trim(),
-      };
-      setUnitsList((prev) => [...prev, newUnit]);
-      setCustomUnit("");
-      alert(`Unit "${newUnit.name}" added successfully!`);
+    if (customUnit.trim() === "") {
+      alert("Custom unit name cannot be empty.");
+      return;
     }
+
+    const newUnit = {
+      id: `CUSTOM-${unitsList.length + 1}`,
+      name: customUnit.trim(),
+    };
+    setUnitsList((prev) => [...prev, newUnit]);
+    setCustomUnit("");
+    alert(`Unit "${newUnit.name}" added successfully!`);
   };
 
   const handleNext = () => {
-    if (currentPage < 2) {
-      setCurrentPage((prev) => prev + 1);
+    if (currentPage === 1) {
+      if (!responses.major.trim()) {
+        alert("Please enter your major before proceeding.");
+        return;
+      }
+
+      if (!responses.year) {
+        alert("Please select your year before proceeding.");
+        return;
+      }
     }
+
+    setCurrentPage((prev) => prev + 1);
   };
 
-  const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
-    }
-  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,29 +74,27 @@ export default function QnsSurvey() {
   };
 
   const leftSideText = () => {
-    if (currentPage === 1) {
-      return (
-        <div>
-          <h1 className="text-5xl font-bold leading-tight">
-            Before Setting Up Your Profile, Answer a Few Questions!
-          </h1>
-          <p className="text-xl mt-4">
-            Let us know a bit about your academic background so we can tailor your profile better.
-          </p>
-        </div>
-      );
-    } else if (currentPage === 2) {
-      return (
-        <div>
-          <h1 className="text-5xl font-bold leading-tight">
-            Tell Us About Your Units and Coursework!
-          </h1>
-          <p className="text-xl mt-4">
-            Select the units you've completed, or add your own custom units if necessary.
-          </p>
-        </div>
-      );
-    }
+    const pageTexts = [
+      {
+        title: "Before Setting Up Your Profile, Answer a Few Questions!",
+        description:
+          "Let us know a bit about your academic background so we can tailor your profile better.",
+      },
+      {
+        title: "Tell Us About Your Units and Coursework!",
+        description:
+          "Select the units you've completed, or add your own custom units if necessary.",
+      },
+    ];
+
+    const { title, description } = pageTexts[currentPage - 1];
+
+    return (
+      <div>
+        <h1 className="text-5xl font-bold leading-tight">{title}</h1>
+        <p className="text-xl mt-4">{description}</p>
+      </div>
+    );
   };
 
   return (
@@ -119,7 +121,6 @@ export default function QnsSurvey() {
                     onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-md text-xl"
                     placeholder="E.g., Computer Science"
-                    required
                   />
                 </div>
                 <div className="mb-6">
@@ -129,7 +130,6 @@ export default function QnsSurvey() {
                     value={responses.year}
                     onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-md text-xl"
-                    required
                   >
                     <option value="">Select your year</option>
                     <option value="1st">1st Year</option>
@@ -168,7 +168,7 @@ export default function QnsSurvey() {
                     <input
                       type="text"
                       value={customUnit}
-                      onChange={handleCustomUnitChange}
+                      onChange={(e) => setCustomUnit(e.target.value)}
                       className="w-full p-3 border border-gray-300 rounded-md text-xl"
                       placeholder="E.g., My Custom Unit"
                     />
@@ -186,15 +186,6 @@ export default function QnsSurvey() {
 
             {/* Navigation Buttons */}
             <div className="flex justify-between mt-8">
-              {currentPage > 1 && (
-                <button
-                  type="button"
-                  onClick={handlePrevious}
-                  className="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 text-xl"
-                >
-                  Previous
-                </button>
-              )}
               {currentPage < 2 ? (
                 <button
                   type="button"
