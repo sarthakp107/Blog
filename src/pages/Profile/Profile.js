@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import Avatar from '../../components/Avatar';
 import { projectFirestore } from '../../firebase/config';
+import { Mail, Star, Award, ChevronRight, ThumbsUp } from 'lucide-react';
+
 
 export default function Profile() {
     const { user } = useAuthContext();
@@ -33,42 +35,70 @@ export default function Profile() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            {/* Header Section */}
-            <header className="flex items-center  h-[70vh] w-[70vh] bg-blue-500 ">
-                <div className=' mb-52 ml-44'>
+        <div className="max-w-4xl mx-auto mt-10 p-8 h-[70vh]" >
+      {/* Header Section */}
+      <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+        <div className="flex items-start space-x-6">
+          <div className="flex-shrink-0 w-32 h-32 rounded-full border-4 border-gray-200">
+          <Avatar displayName={user.displayName} />
+              
+          </div>
+          
+          <div className="flex-grow">
+            <div className="flex justify-between items-start">
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">{user.displayName}</h1>
+                <p className="text-gray-600">{userData.responses.major}</p>
+                <p className="text-gray-600">{userData.responses.year}</p>
+              </div>
+              
+              <button className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                {/* <Mail className="w-4 h-4" /> */}
+                <span>Message</span>
+              </button>
+            </div>
 
-                    <div className='flex mb-10'>
-
-
-                        <div className=' w-24 mr-7 '>
-                            <Avatar displayName={user.displayName} />
-                        </div>
-                        <div className='flex flex-col '>
-
-                        <h1 className="text-4xl sm:text-5xl font-bold mb-2 text-white">{user.displayName}</h1>
-                        {userData.responses.course && (
-                            <span className="p-2 bg-red-700 text-white rounded-full text-lg">{userData.responses.course}</span>
-                        )}
-                        </div>
-                    </div>
-                    {/* Profile Information Below Display Name (as tags) */}
-                    <div className="flex flex-wrap justify-center gap-3">
-                        
-                        {userData.responses.major && (
-                            <span className="px-4 py-2 bg-teal-500 text-white rounded-full text-lg">{userData.responses.major}</span>
-                        )}
-                        {userData.responses.year && (
-                            <span className="px-4 py-2 bg-green-500 text-white rounded-full text-lg">{userData.responses.year} Year</span>
-                        )}
-                        {userData.responses.units && userData.responses.units.length > 0 && (
-                            <span className="px-4 py-2 bg-purple-500 text-white rounded-full text-lg">
-                                {userData.responses.units.join(', ')}
-                            </span>
-                        )}
-                    </div>
-                </div>
-            </header>
+            <div className="mt-4 flex items-center space-x-4">
+              <div className="flex items-center space-x-1 text-gray-600">
+                <ThumbsUp className="w-4 h-4" />
+                <span>{userData.votes || 0} votes</span>
+              </div>
+              <div className="flex items-center space-x-1 text-gray-600">
+                <Award className="w-4 h-4" />
+                <span>{userData.badges?.length || 0} badges</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      {/* Strong Units Section */}
+      <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+        <h2 className="text-xl font-semibold mb-4 flex items-center">
+          <Star className="w-5 h-5 mr-2 text-yellow-500" />
+          Units Taken
+        </h2>
+        <div className="space-y-3">
+          {userData.responses.units && userData.responses.units.map((unit, index) => (
+            <div 
+              key={index}
+              className="flex items-center justify-between p-3 bg-gray-50 rounded-md hover:bg-gray-100"
+            >
+              <span className="text-gray-700">{unit}</span>
+              <ChevronRight className="w-5 h-5 text-gray-400" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Badges Section */}
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <h2 className="text-xl font-semibold mb-4 flex items-center">
+          <Award className="w-5 h-5 mr-2 text-blue-500" />
+          Badges
+        </h2>
+        
+      </div>
+    </div>
     );
 }
