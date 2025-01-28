@@ -2,7 +2,10 @@ import React, { useState } from "react";
 
 export default function QnsSurvey() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [error, setError] = useState('');
+
   const [responses, setResponses] = useState({
+    course: "",
     major: "",
     units: [],
     year: "",
@@ -51,14 +54,19 @@ export default function QnsSurvey() {
   };
 
   const handleNext = () => {
+    setError('');
     if (currentPage === 1) {
+      if (!responses.course.trim()) {
+        setError('Please enter your course');
+        return;
+      }
       if (!responses.major.trim()) {
-        alert("Please enter your major before proceeding.");
+        setError('Please enter your major');
         return;
       }
 
       if (!responses.year) {
-        alert("Please select your year before proceeding.");
+        setError("Please select your year before proceeding.");
         return;
       }
     }
@@ -113,6 +121,17 @@ export default function QnsSurvey() {
             {currentPage === 1 && (
               <div>
                 <div className="mb-6">
+                  <label className="block text-2xl font-medium text-gray-700 mb-2">What course are you taking?</label>
+                  <input
+                    type="text"
+                    name="course"
+                    value={responses.course}
+                    onChange={handleInputChange}
+                    className="w-full p-3 border border-gray-300 rounded-md text-xl"
+                    placeholder="E.g., Computer Science"
+                  />
+                </div>
+                <div className="mb-6">
                   <label className="block text-2xl font-medium text-gray-700 mb-2">What is your major?</label>
                   <input
                     type="text"
@@ -120,7 +139,7 @@ export default function QnsSurvey() {
                     value={responses.major}
                     onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-md text-xl"
-                    placeholder="E.g., Computer Science"
+                    placeholder="E.g., Software Development"
                   />
                 </div>
                 <div className="mb-6">
@@ -204,6 +223,11 @@ export default function QnsSurvey() {
               )}
             </div>
           </form>
+          {error && (
+  <div className="bg-red-500 text-white py-2 px-4 rounded-lg mt-3 b border-2 border-red-900">
+    <p className="font-semibold">{error}</p>
+  </div>
+)}
         </div>
       </div>
     </div>
