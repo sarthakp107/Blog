@@ -47,9 +47,10 @@ export default function Profile() {
           <div className="flex-grow">
             <div className="flex justify-between items-start">
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">{user.displayName}</h1>
-                <p className="text-gray-600">{userData.responses.major}</p>
-                <p className="text-gray-600">{userData.responses.year}</p>
+                <h1 className="text-3xl font-bold text-gray-900" style={{ fontFamily: 'Poppins, sans-serif' }} >{user.displayName}</h1>
+                <p className="text-black bg-red-400 p-1.5 rounded-full mt-2 mb-2 inline-block">{userData.responses.course}</p><br></br>
+                <p className="text-black bg-green-400 p-1.5 rounded-full inline-block">{userData.responses.major}</p>
+                <p className="text-black bg-yellow-500 p-1.5 rounded-full inline-block ml-3">{userData.responses.year} Year</p>
               </div>
               
               <button className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
@@ -92,13 +93,13 @@ export default function Profile() {
       </div>
 
       {/* Badges Section */}
-      <div className="bg-white rounded-lg shadow-lg p-6">
+      {/* <div className="bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-xl font-semibold mb-4 flex items-center">
           <Award className="w-5 h-5 mr-2 text-blue-500" />
           Badges
         </h2>
         
-      </div>
+      </div> */}
     </div>
     );
 }

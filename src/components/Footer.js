@@ -4,7 +4,7 @@ import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="flex  bg-gray-800 text-white py-7 mt-8">
+    <footer className="flex  bg-gray-800 text-white py-7 mt-4">
       <div className="container mx-auto text-center">
         <p>&copy; {new Date().getFullYear()} Sarthak Pradhan. All rights reserved.</p>
 

@@ -27,20 +27,25 @@ export default function Navbar() {
 
       {/* Navigation Links */}
       <div>
-        <ul className="flex gap-8 text-lg text-gray-700">
+        <ul className="flex gap-12 text-lg text-gray-700">
           <li>
             <Link to="/home" className="hover:text-gray-900">
               Home
             </Link>
           </li>
           <li>
-            <Link to="/about" className="hover:text-gray-900">
-              About
+            <Link to="/exploreUnits" className="hover:text-gray-900">
+              Units
             </Link>
           </li>
           <li>
-            <Link to="/author" className="hover:text-gray-900">
-              Author
+            <Link to="/mentorship" className="hover:text-gray-900">
+            Mentorship
+            </Link>
+          </li>
+          <li>
+            <Link to="/unitBuddy" className="hover:text-gray-900">
+            Buddy
             </Link>
           </li>
         </ul>
@@ -56,7 +61,7 @@ export default function Navbar() {
           </li>
           }
           {!user && <li>
-            <Link to="/login" className="text-gray-700 hover:text-gray-900">
+            <Link to="/login" className="text-gray-700 hover:text-gray-900 bg-blue-500 text-white rounded-full px-4 py-2 hover:bg-blue-600 transition">
               Login
             </Link>
           </li>}
@@ -71,7 +76,7 @@ export default function Navbar() {
             </button>} */}
 
           {user && <ProfileToggle/>}
-          {!user && <li>
+          {/* {!user && <li>
             <Link
               to="/login"
               className="bg-blue-500 text-white rounded-full px-4 py-2 hover:bg-blue-600 transition"
@@ -86,7 +91,7 @@ export default function Navbar() {
             >
               Subscribe
             </Link>
-          </li>}
+          </li>} */}
         </ul>
       </div>
 
