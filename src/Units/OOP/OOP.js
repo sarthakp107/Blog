@@ -3,19 +3,20 @@ import TabsForUnits from './TabsForUnits'; // Import the reusable Tabs component
 
 export default function OOP() {
   return (
-    <div className="w-full font-sans mt-24">
+    <div className="w-full font-sans mt-16 ">
       {/* Title Section */}
-      {/* <div className="bg-blue-300 text-black p-5 ">
-        <div className="max-w-screen-xl mx-auto text-center">
-          <h1 className="text-4xl font-extrabold">Object-Oriented Programming (OOP)</h1>
-          <p className="mt-2 text-lg">An In-Depth Exploration of OOP Concepts, Practices, and Resources</p>
-        </div>
-      </div> */}
-      <div className="mt-0"> {/* Adjusted margin to remove space */}
-        <TabsForUnits />
+      <div className="text-center  bg-blue-50 py-9">
+        <h1 className="text-3xl font-bold text-gray-800">Object-Oriented Programming (OOP) Overview</h1>
+        <p className="text-gray-600 text-sm mt-2">
+          Explore detailed information, notes, and resources for OOP. Use the tabs to navigate.
+        </p>
       </div>
 
       {/* Tabs Section */}
+      <div className="mt-0"> {/* Adjusted margin to remove space */}
+        <TabsForUnits />
+
+      </div>
     </div>
   );
 }

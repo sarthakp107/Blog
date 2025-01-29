@@ -6,6 +6,7 @@ import Notes from './Notes';
 import AssignmentHelp from './AssignmentHelp';
 import PastStudents from './PastStudents';
 import CurrentStudents from './CurrentStudents';
+import OnlineUsers from '../../components/OnlineUsers';
 
 const tabs = [
   { label: 'Unit Overview', icon: <FaInfoCircle />, component: <UnitOverview /> },
@@ -19,9 +20,9 @@ export default function TabsForUnits() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="flex">
+    <div className="flex  ">
       {/* Sidebar */}
-      <div className="w-64 gap-5 bg-gray-100 border-r-2 border-gray-300 flex flex-col min-h-[80vh] max-h-[80vh] overflow-y-auto">
+      <div className=" bg-blue-50  mt-0 w-64 gap-5    border-r-2 border-gray-300 flex flex-col min-h-[120vh] max-h-[80vh] overflow-y-auto">
         {tabs.map((tab, index) => (
           <div
             key={index}
@@ -37,7 +38,8 @@ export default function TabsForUnits() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 p-5">{tabs[activeTab].component}</div>
+      <div className="flex-1 p-4  mr-64">{tabs[activeTab].component}</div>
+
     </div>
   );
 }

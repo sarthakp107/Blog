@@ -10,9 +10,7 @@ const UnitOverview = () => {
   const toggleDates = () => setDatesOpen(!isDatesOpen);
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
-     
-
+    <div className="flex flex-col h-screen bg-white p-4 overflow-auto">
       {/* Learning Outcomes Section */}
       <div className="mb-8">
         <button
@@ -90,8 +88,6 @@ const UnitOverview = () => {
           <li>📋 **Portfolio (100%)**: A detailed portfolio showcasing your design, programming, testing, and debugging skills in OOP.</li>
         </ul>
       </div>
-
-      
     </div>
   );
 };
