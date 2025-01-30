@@ -1,13 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCode, FaLaptopCode, FaNetworkWired } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { projectFirestore } from "../../firebase/config";
 
-const ExploreUnits = () => {
+
+
+const ExploreUnits =() => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("All Units");
+const {user} = useAuthContext();
 
 //have to replace with the users major{}
-  const userMajor = "Networking and Cybersecurity";
+  const userMajor = "Cybersecurity";
+
+// const userMajor = {user.major};
+
+const [userData, setUserData] = useState(null);
+
+    useEffect(() => {
+        if (user) {
+            const fetchUserData = async () => {
+                try {
+                    const userDoc = await projectFirestore.collection('users').doc(user.uid).get();
+                    if (userDoc.exists) {
+                        setUserData(userDoc.data());
+                    }
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                }
+            };
+
+            fetchUserData();
+        }
+    }, [user]);
+
+
+
 
   const categories = [
     {
@@ -40,7 +69,7 @@ const ExploreUnits = () => {
       ],
     },
     {
-      major: "Networking and Cybersecurity",
+      major: "Cybersecurity",
       units: [
         {
           title: "Network Administration",

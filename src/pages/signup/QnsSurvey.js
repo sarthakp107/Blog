@@ -31,15 +31,12 @@ export default function QnsSurvey() {
     "Bachelor of Information Technology",
     "Bachelor of Software Engineering",
     "Bachelor of Cybersecurity",
-    "Bachelor of Data Science",
   ];
 
   const validMajors = [
     "Software Development",
-    "Cybersecurity",
+    "Network and Cybersecurity",
     "Artificial Intelligence",
-    "Data Analytics",
-    "Network Design",
   ];
 
   const handleInputChange = (e) => {

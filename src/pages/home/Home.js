@@ -8,15 +8,15 @@ export default function Home() {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Header Section */}
-      <header className="flex justify-center items-center h-[65vh] bg-blue-500 text-white">
+      {!user && <header className="flex justify-center items-center h-[60vh] bg-blue-500 text-white">
         <div className="text-center">
           <h1 className="text-6xl font-bold mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
             Welcome to Swin Study!
           </h1>
           <p className="text-xl mb-8">Connect, Collaborate, and Conquer Your Studies</p>
         </div>
-      </header>
-      {user && <header className="flex justify-center items-center h-[20vh] bg-gradient-to-r from-gray-700 to-gray-500 text-white">
+      </header>}
+      {user && <header className="flex justify-center items-center mt-10 h-[30vh] bg-gradient-to-r from-gray-700 to-gray-500 text-white">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
             Discover Your Next Step

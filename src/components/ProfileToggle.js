@@ -1,6 +1,6 @@
 // src/components/Avatar.js
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLogout } from '../hooks/useLogout';
 import Avatar from './Avatar';
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -13,10 +13,12 @@ const ProfileToggle = () => {
     const { user } = useAuthContext();
     const dropdownRef = useRef(null);
     const buttonRef = useRef(null);
+    const navigate = useNavigate();
 
     const handleLogout = (e) => {
         e.preventDefault();
         logout();
+        navigate('/');
     };
 
     const toggleDropdown = () => {
